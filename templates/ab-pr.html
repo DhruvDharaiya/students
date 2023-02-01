@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Absent-Present Section</title>
+  </head>
+  <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="/">PantherProgramming</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                  </li>
+                  
+                  <li class="nav-item" >
+                    <a class="nav-link" href="/panther">About</a>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search Here" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+
+    <div class="container my-3">
+        <h4>
+          Absent-Present Form
+        </h4>
+        <form action="/ap" method="POST">
+            <div class="mb-3">
+              <label for="ron1" class="form-label">Roll No.</label>
+              <input type="text" class="form-control"name="ron1" id="ron1" placeholder="Roll Number">
+            </div>
+            <div class="mb-3">
+              <label for="apd1" class="form-label">Absent-Present Date</label>
+              <input type="text" class="form-control" name="apd1" id="apd1" placeholder="Absent-Present Date">
+          </div>
+            <div class="mb-3">
+                <label for="ap1" class="form-label">Absent-Present</label>
+                <input type="text" class="form-control" name="ap1" id="ap1" placeholder="a / p">
+            </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
+      <div class="container", method="GET">
+        {% if Sts|length==0 %}
+        <div class="alert alert-secondary" role="alert">
+          No Information added, Add Now !
+        </div>
+        {% else %}
+        Students' Absent-Present Data
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">RNo</th>
+                <th scope="col">Name</th>
+                <th scope="col">Absent-Present</th>
+                <th scope="col">Date</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for St in Sts %}
+            <tr>
+                <th scope="row">{{St.ronm}}</th>
+                <td>{{St.name1m}}</td>
+                <td>{{St.apm}}</td>
+                <td>{{St.apDatem}}</td>
+                <td><a href="/APD/{{St.ronm}}"><button type="button" class="btn btn-outline-danger">Delete</button></a></td>
+              </tr>
+            {% endfor %}
+              
+              
+            </tbody>
+          </table>
+        {% endif %}
+      </div>
+   
+  </body>
+</html>
